@@ -3,25 +3,24 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<meta name="theme-color" content="#9a3412" />
+<meta name="theme-color" content="#1c1812" />
 <title>Seville · Jul 1–5</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" />
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%239a3412'/%3E%3Ctext x='50' y='66' font-size='52' text-anchor='middle' fill='white' font-family='-apple-system,sans-serif' font-weight='700'%3ES%3C/text%3E%3C/svg%3E" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" />
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%231c1812'/%3E%3Ctext x='50' y='66' font-size='48' text-anchor='middle' fill='%23f3ecdf' font-family='-apple-system,sans-serif' font-weight='300'%3ES%3C/text%3E%3C/svg%3E" />
 <style>
   :root {
-    --bg: #fbf6ee;
-    --bg-2: #f5ede0;
-    --ink: #1c1410;
-    --muted: #847268;
-    --accent: #9a3412;
-    --accent-soft: #fde4cf;
-    --booked: #166534;
-    --booked-soft: #dcfce7;
-    --card: #ffffff;
-    --border: #ebe1d2;
-    --shadow: 0 1px 2px rgba(28, 20, 16, 0.04);
+    --bg: #f3ecdf;
+    --bg-2: #ebe2cf;
+    --paper: #fbf6ec;
+    --ink: #1c1812;
+    --ink-2: #3a3228;
+    --muted: #8a7c6c;
+    --line: #ddd1bb;
+    --line-soft: #e8dec9;
+    --booked: #5d6a4a;
+    --booked-soft: #e3e6d4;
   }
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   html, body {
@@ -30,69 +29,66 @@
     color: var(--ink);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     font-size: 16px;
-    line-height: 1.55;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
-  .serif {
-    font-family: 'Fraunces', Georgia, serif;
-    font-weight: 600;
-    letter-spacing: -0.015em;
-  }
+
+  /* HEADER */
   header {
     background: var(--bg);
     position: sticky; top: 0; z-index: 10;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--line-soft);
   }
   .header-row {
     display: flex; align-items: center; justify-content: space-between;
     gap: 12px;
-    padding: 14px 16px 6px;
+    padding: 16px 20px 8px;
   }
-  .title-block h1 {
-    font-family: 'Fraunces', Georgia, serif;
-    font-weight: 600;
-    font-size: 20px;
-    margin: 0;
-    letter-spacing: -0.015em;
+  .brand {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--ink);
   }
-  .title-block .sub {
-    color: var(--muted);
-    font-size: 12px;
-    margin-top: 1px;
-  }
+  .brand .sep { color: var(--muted); margin: 0 8px; }
   .home-btn {
     flex: 0 0 auto;
     display: inline-flex; align-items: center; gap: 6px;
-    padding: 9px 13px;
-    background: var(--accent);
-    color: white;
+    padding: 8px 13px;
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--ink);
     border-radius: 999px;
     text-decoration: none;
-    font-size: 13px;
-    font-weight: 600;
-    border: none;
-    box-shadow: var(--shadow);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     font-family: inherit;
   }
-  .home-btn svg { width: 14px; height: 14px; }
+  .home-btn svg { width: 12px; height: 12px; }
 
   .tabs {
-    display: flex; gap: 6px;
+    display: flex; gap: 4px;
     overflow-x: auto;
-    padding: 6px 16px 10px;
+    padding: 6px 20px 12px;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
   }
   .tabs::-webkit-scrollbar { display: none; }
   .tab {
     flex: 0 0 auto;
-    padding: 8px 14px;
+    padding: 7px 14px;
     border-radius: 999px;
-    border: 1px solid var(--border);
-    background: var(--card);
-    font-size: 13.5px;
+    border: 1px solid transparent;
+    background: transparent;
+    font-size: 11px;
     font-weight: 500;
-    color: var(--ink);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
     cursor: pointer;
     scroll-snap-align: start;
     white-space: nowrap;
@@ -100,229 +96,283 @@
   }
   .tab[aria-selected="true"] {
     background: var(--ink);
-    color: white;
+    color: var(--bg);
     border-color: var(--ink);
   }
 
-  main { padding: 18px 16px 80px; max-width: 640px; margin: 0 auto; }
+  /* MAIN LAYOUT */
+  main { padding: 0 0 80px; max-width: 720px; margin: 0 auto; }
 
-  .day-header { margin-bottom: 18px; }
-  .day-eyebrow {
+  /* HERO */
+  .hero {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 24px;
+    background: var(--bg-2);
+  }
+
+  /* DAY HEADER */
+  .day-header { padding: 8px 20px 28px; }
+  .eyebrow {
     text-transform: uppercase;
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    color: var(--accent);
-    font-weight: 600;
-    margin-bottom: 6px;
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    color: var(--muted);
+    font-weight: 500;
+    margin-bottom: 14px;
   }
   .day-header h2 {
-    font-family: 'Fraunces', Georgia, serif;
-    font-weight: 600;
-    font-size: 28px;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    margin: 0 0 6px;
+    font-size: 34px;
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    margin: 0 0 12px;
+    color: var(--ink);
   }
   .day-header p {
-    color: var(--muted);
+    color: var(--ink-2);
     margin: 0;
-    font-size: 15px;
+    font-size: 16px;
+    max-width: 540px;
   }
 
+  /* STOP — editorial, hairline-separated */
+  .stops { padding: 0 20px; }
   .stop {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 16px 18px;
-    margin-bottom: 10px;
-    box-shadow: var(--shadow);
+    padding: 26px 0;
+    border-top: 1px solid var(--line-soft);
   }
-  .stop-header {
-    display: flex; align-items: baseline; justify-content: space-between;
+  .stop:first-child { border-top: 1px solid var(--line); }
+  .stop-meta {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 8px;
     gap: 8px;
   }
   .stop-time {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--accent);
+    font-size: 10.5px;
+    font-weight: 500;
+    color: var(--muted);
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.22em;
   }
   .stop-name {
-    font-family: 'Fraunces', Georgia, serif;
-    font-weight: 600;
-    font-size: 19px;
-    line-height: 1.25;
-    margin: 4px 0 6px;
-    letter-spacing: -0.01em;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 4px 0 12px;
+    letter-spacing: -0.015em;
+    color: var(--ink);
   }
-  .stop-notes { color: #3f342e; font-size: 14.5px; margin: 0 0 12px; }
-  .actions { display: flex; gap: 8px; flex-wrap: wrap; }
-  .btn {
+  .stop-image {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    display: block;
+    margin: 4px 0 16px;
+    background: var(--bg-2);
+  }
+  .stop-notes {
+    color: var(--ink-2);
+    font-size: 15px;
+    margin: 0 0 18px;
+    line-height: 1.65;
+    max-width: 580px;
+  }
+
+  /* CTA — minimal text + arrow, dark ink */
+  .cta {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 9px 14px;
-    background: var(--accent);
-    color: white;
-    border-radius: 10px;
-    text-decoration: none;
-    font-size: 13.5px;
-    font-weight: 500;
+    gap: 10px;
+    padding: 11px 18px;
+    background: var(--ink);
+    color: var(--bg);
     border: none;
-    cursor: pointer;
+    border-radius: 0;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
     font-family: inherit;
+    cursor: pointer;
   }
-  .btn.secondary {
-    background: white;
-    color: var(--ink);
-    border: 1px solid var(--border);
-  }
-  .btn.subtle {
-    background: var(--bg-2);
-    color: var(--ink);
-    border: 1px solid transparent;
-  }
+  .cta::after { content: '→'; font-size: 13px; letter-spacing: 0; }
+  .cta.outline { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+  .cta.subtle  { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+  .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
   .pill {
     display: inline-flex;
     align-items: center;
-    gap: 3px;
-    padding: 3px 9px;
+    gap: 4px;
+    padding: 3px 10px;
     border-radius: 999px;
-    font-size: 10.5px;
-    font-weight: 600;
+    font-size: 9.5px;
+    font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.18em;
     white-space: nowrap;
   }
-  .pill.todo { background: var(--accent-soft); color: var(--accent); }
-  .pill.done { background: var(--booked-soft); color: var(--booked); }
+  .pill.todo { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+  .pill.done { background: var(--booked-soft); color: var(--booked); border: 1px solid var(--booked-soft); }
 
-  .stop.is-home { background: var(--bg-2); border-style: dashed; box-shadow: none; }
-  .stop.is-home .stop-name { font-style: italic; }
+  .stop.is-home .stop-name { font-style: italic; color: var(--muted); }
+  .stop.is-home .stop-time { opacity: 0.7; }
 
-  /* tickets page */
-  .ticket {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 14px 16px;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: flex-start;
+  /* ESSENTIALS */
+  .address-card {
+    margin: 0 20px 26px;
+    padding: 20px 22px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+  }
+  .address-card .label {
+    color: var(--muted);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .address-card .addr {
+    font-size: 15px;
+    color: var(--ink);
+  }
+  .essentials-section { padding: 0 20px; margin-bottom: 28px; }
+  .essentials-section h3 {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  .essential {
+    display: flex; align-items: center; justify-content: space-between;
     gap: 14px;
-    box-shadow: var(--shadow);
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line-soft);
+    text-decoration: none;
+    color: inherit;
   }
-  .ticket.checked { background: var(--booked-soft); border-color: #bbf7d0; }
-  .checkbox {
+  .essential:last-child { border-bottom: none; }
+  .essential-name { font-size: 15.5px; font-weight: 400; color: var(--ink); }
+  .essential-sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .essential-arrow {
+    color: var(--ink);
+    font-size: 16px;
     flex: 0 0 auto;
-    width: 26px; height: 26px;
-    border: 2px solid var(--border);
-    border-radius: 8px;
-    background: white;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 2px;
-    transition: all 0.1s;
+    transition: transform 0.15s;
   }
-  .checkbox.checked {
-    background: var(--booked);
-    border-color: var(--booked);
-  }
-  .checkbox.checked::after {
-    content: '';
-    width: 7px; height: 12px;
-    border: solid white;
-    border-width: 0 2.5px 2.5px 0;
-    transform: rotate(45deg) translate(-1px, -1px);
-  }
-  .ticket-body { flex: 1; min-width: 0; }
-  .ticket-name {
-    font-family: 'Fraunces', Georgia, serif;
-    font-size: 17px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    margin: 0 0 2px;
-  }
-  .ticket-when { color: var(--accent); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; margin: 0 0 6px; }
-  .ticket-note { color: #3f342e; font-size: 14px; margin: 0 0 10px; }
-  .ticket.checked .ticket-name { text-decoration: line-through; opacity: 0.7; }
+  .essential:hover .essential-arrow { transform: translateX(3px); }
 
+  /* TICKETS */
+  .tickets-wrap { padding: 0 20px; }
   .progress {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 14px 16px;
-    margin-bottom: 14px;
+    padding: 16px 20px;
+    margin: 0 20px 24px;
+    background: var(--paper);
+    border: 1px solid var(--line);
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    box-shadow: var(--shadow);
+    gap: 16px;
   }
-  .progress-text { font-size: 13px; color: var(--muted); }
-  .progress-text strong { color: var(--ink); }
+  .progress-text {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-weight: 500;
+    flex: 0 0 auto;
+  }
+  .progress-text strong { color: var(--ink); font-weight: 500; }
   .progress-bar {
     flex: 1;
-    height: 6px;
-    background: var(--border);
-    border-radius: 999px;
+    height: 2px;
+    background: var(--line);
     overflow: hidden;
   }
   .progress-bar > div {
     height: 100%;
     background: var(--booked);
-    transition: width 0.2s;
+    transition: width 0.3s;
   }
 
-  /* essentials page */
-  .essentials-section { margin-bottom: 22px; }
-  .essentials-section h3 {
-    font-family: 'Fraunces', Georgia, serif;
-    font-size: 16px;
-    font-weight: 600;
+  .ticket {
+    padding: 24px 0;
+    border-top: 1px solid var(--line-soft);
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+  }
+  .ticket:first-child { border-top: 1px solid var(--line); }
+  .checkbox {
+    flex: 0 0 auto;
+    width: 26px; height: 26px;
+    border: 1px solid var(--ink);
+    background: transparent;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    margin-top: 4px;
+  }
+  .checkbox.checked {
+    background: var(--ink);
+    border-color: var(--ink);
+  }
+  .checkbox.checked::after {
+    content: '';
+    width: 7px; height: 12px;
+    border: solid var(--bg);
+    border-width: 0 1.5px 1.5px 0;
+    transform: rotate(45deg) translate(-1px, -1px);
+  }
+  .ticket-body { flex: 1; min-width: 0; }
+  .ticket-when {
+    color: var(--muted);
+    font-size: 10.5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    margin: 0 0 6px;
+  }
+  .ticket-name {
+    font-size: 19px;
+    font-weight: 400;
     letter-spacing: -0.01em;
     margin: 0 0 8px;
-    color: var(--ink);
+    line-height: 1.25;
   }
-  .essential {
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 12px;
-    padding: 13px 16px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    margin-bottom: 8px;
-    text-decoration: none;
-    color: inherit;
-    box-shadow: var(--shadow);
+  .ticket.checked .ticket-name { text-decoration: line-through; color: var(--muted); }
+  .ticket-note {
+    color: var(--ink-2);
+    font-size: 14.5px;
+    margin: 0 0 14px;
+    line-height: 1.6;
   }
-  .essential-name { font-size: 14.5px; font-weight: 500; }
-  .essential-sub { font-size: 12.5px; color: var(--muted); margin-top: 1px; }
-  .essential-arrow { color: var(--muted); font-size: 18px; }
 
-  .address-card {
-    background: var(--bg-2);
-    border-radius: 12px;
-    padding: 12px 14px;
-    margin-bottom: 18px;
-    font-size: 13.5px;
-    color: #3f342e;
+  @media (min-width: 720px) {
+    .day-header { padding: 16px 32px 36px; }
+    .stops { padding: 0 32px; }
+    .essentials-section, .tickets-wrap { padding: 0 32px; }
+    .address-card, .progress { margin-left: 32px; margin-right: 32px; }
+    .day-header h2 { font-size: 44px; }
   }
-  .address-card .label { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 2px; }
 </style>
 </head>
 <body>
 <header>
   <div class="header-row">
-    <div class="title-block">
-      <h1>Seville · July 1–5</h1>
-      <div class="sub">Tap any place for walking directions</div>
-    </div>
+    <div class="brand">Seville <span class="sep">·</span> Jul 1–5</div>
     <a class="home-btn" id="home-btn" href="#" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12 12 3l9 9"/><path d="M5 10v10h14V10"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12 12 3l9 9"/><path d="M5 10v10h14V10"/></svg>
       Airbnb
     </a>
   </div>
@@ -332,14 +382,24 @@
 <script>
   const AIRBNB = 'C/ de Sta. Clara, 4, Casco Antiguo, 41002 Sevilla, Spain';
 
-  // Open Google Maps with destination = X, origin = current location
   const directTo = (q, mode = 'walking') =>
     `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(q)}&travelmode=${mode}`;
   const searchNearAirbnb = (q) =>
     `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q + ' near ' + AIRBNB)}`;
 
-  // wire up the sticky home button
   document.getElementById('home-btn').href = directTo(AIRBNB, 'walking');
+
+  // image library — Wikimedia Commons URLs (stable, hotlinkable)
+  const IMG = {
+    alameda: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Alameda_de_H%C3%A9rcules.JPG/1280px-Alameda_de_H%C3%A9rcules.JPG',
+    setas:   'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Metropolparasolnov2011001.jpg/1280px-Metropolparasolnov2011001.jpg',
+    alcazar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Sevilla-2-2_%2848040287512%29-edit.jpg/1280px-Sevilla-2-2_%2848040287512%29-edit.jpg',
+    triana:  'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Sevilla-3-12_%2848040411218%29.jpg/1280px-Sevilla-3-12_%2848040411218%29.jpg',
+    bridge:  'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Pont_Triana.jpg/1280px-Pont_Triana.jpg',
+    plaza:   'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Plaza_de_Espa%C3%B1a_%28Sevilla%29_-_01.jpg/1280px-Plaza_de_Espa%C3%B1a_%28Sevilla%29_-_01.jpg',
+    park:    'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Parque_de_Mar%C3%ADa_Luisa_%282%29.jpg/1280px-Parque_de_Mar%C3%ADa_Luisa_%282%29.jpg',
+    cathedral: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Sevilla_Cathedral_-_Southeast.jpg/1280px-Sevilla_Cathedral_-_Southeast.jpg',
+  };
 
   const tickets = [
     {
@@ -360,7 +420,7 @@
       id: 'alcazar-concert',
       name: 'Real Alcázar — night garden concert',
       when: 'Sat Jul 4 · 10:30 PM',
-      note: '€7. Watch for 2026 program drop mid-to-late June. Enter via Puerta de la Alcoba (Murillo Gardens side).',
+      note: '€7. Watch for the 2026 program drop mid-to-late June. Enter via Puerta de la Alcoba (Murillo Gardens side).',
       url: 'https://www.alcazarsevilla.org/',
     },
   ];
@@ -375,9 +435,10 @@
   const days = [
     {
       id: 'wed',
-      date: 'Wed Jul 1',
+      date: 'Wed · Jul 1',
       title: 'Arrival & neighborhood night',
-      subtitle: 'Land, drop bags, ease in. Everything tonight is within a 5-min walk.',
+      subtitle: 'Land, drop bags, ease in. Everything tonight is within a 5-minute walk.',
+      hero: IMG.alameda,
       stops: [
         {
           time: 'Late afternoon',
@@ -390,19 +451,20 @@
           time: '6:00 PM',
           name: 'First essentials run',
           query: 'supermercado near ' + AIRBNB,
-          notes: 'Stock the apartment: still water (lots), coffee for the morning, fresh fruit, jamón + bread for breakfast, a couple bottles of wine and beer for the pool. The Essentials tab has every category mapped near the door.',
+          notes: 'Stock the apartment: still water (lots), coffee for the morning, fresh fruit, jamón and bread for breakfast, a couple of bottles of wine and beer for the pool. The Essentials tab has every category mapped near the door.',
         },
         {
           time: '7:00 PM',
           name: 'Cool down at home',
           isHome: true,
-          notes: 'Unpack properly, charge phones, plot the night. Spanish dinner is naturally late (9–11pm) and the streets only become tolerable around 8.',
+          notes: 'Unpack properly, charge phones, plot the night. Spanish dinner runs late (9–11pm) and the streets only become tolerable around 8.',
         },
         {
           time: '8:00 PM',
           name: 'Alameda de Hércules',
           query: 'Alameda de Hércules Sevilla',
-          notes: 'Aperitivo at El Viajero Sedentario or Bar Las Columnas. Plaza is dead at 6pm, alive by 9.',
+          image: IMG.alameda,
+          notes: 'Aperitivo at El Viajero Sedentario or Bar Las Columnas. The plaza is dead at 6pm, alive by 9.',
         },
         {
           id: 'wed-eslava',
@@ -413,23 +475,24 @@
         },
         {
           time: 'Late',
-          name: 'Calle Feria stroll',
+          name: 'Calle Feria stroll home',
           query: 'Calle Feria Sevilla',
-          notes: 'Bar-hop a couple stops on the way home if energy allows.',
+          notes: 'Bar-hop a couple stops on the way back if energy allows.',
         },
       ],
     },
     {
       id: 'thu',
-      date: 'Thu Jul 2',
-      title: 'Flea market + sunset Setas',
+      date: 'Thu · Jul 2',
+      title: 'Flea market and sunset Setas',
       subtitle: 'Morning hunt, afternoon pool, golden hour rooftop.',
+      hero: IMG.setas,
       stops: [
         {
           time: '9:00 AM',
           name: 'El Jueves flea market',
           query: 'El Jueves mercadillo Calle Feria Sevilla',
-          notes: 'Thursdays only, 3 min from the door. Vintage, antiques, junk-treasure. Coffee at a Calle Feria bar between rounds. Go before 11am while it’s still bearable.',
+          notes: 'Thursdays only, 3 minutes from the door. Vintage, antiques, junk-treasure. Coffee at a Calle Feria bar between rounds. Go before 11am while it’s still bearable.',
         },
         {
           time: '11:30 AM',
@@ -447,7 +510,8 @@
           time: '7:45 PM',
           name: 'Setas de Sevilla',
           query: 'Setas de Sevilla',
-          notes: 'Climb the rooftop walkway at golden hour. Sunset ~9:45pm in early July. Quick visit, but the views are everything.',
+          image: IMG.setas,
+          notes: 'Climb the rooftop walkway at golden hour. Sunset is around 9:45pm in early July. Quick visit, but the views are everything.',
         },
         {
           time: '9:30 PM',
@@ -459,16 +523,18 @@
     },
     {
       id: 'fri',
-      date: 'Fri Jul 3',
-      title: 'Alcázar by day + flamenco',
+      date: 'Fri · Jul 3',
+      title: 'Alcázar by day, flamenco by night',
       subtitle: 'Daytime gives you the palace interiors — the actual showstopper.',
+      hero: IMG.alcazar,
       stops: [
         {
           id: 'fri-alcazar',
           time: '9:30 AM',
           name: 'Real Alcázar de Sevilla',
           query: 'Real Alcázar de Sevilla',
-          notes: 'Walk down through Centro, ~20 min. Go early — it’s cool and quiet. Pay extra for the Royal Apartments; it’s worth the full thing.',
+          image: IMG.alcazar,
+          notes: 'Walk down through Centro, ~20 minutes. Go early — it’s cool and quiet. Pay extra for the Royal Apartments; it’s worth the full thing.',
         },
         {
           time: '11:30 AM',
@@ -486,14 +552,14 @@
           time: '2:00 PM',
           name: 'Pool & siesta',
           isHome: true,
-          notes: 'Walk or taxi home, ~20 min.',
+          notes: 'Walk or taxi home, ~20 minutes.',
         },
         {
           id: 'fri-flamenco',
           time: '9:00 PM',
           name: 'Casa de la Memoria — flamenco',
           query: 'Casa de la Memoria Calle Cuna 6 Sevilla',
-          notes: 'Walk 10 min south. Arrive 30 min early — first-come seats. Show is intimate (~50 seats), no food/drink, ~75 min. The most authentic of the small tablaos.',
+          notes: 'Walk 10 minutes south. Arrive 30 minutes early — first-come seats. Show is intimate (~50 seats), no food/drink, ~75 minutes. The most authentic of the small tablaos.',
         },
         {
           time: '10:30 PM',
@@ -505,27 +571,28 @@
     },
     {
       id: 'sat',
-      date: 'Sat Jul 4',
-      title: 'Triana day + Alcázar night',
-      subtitle: 'Last shot at Mercado Triana (closed Sun), then the big night.',
+      date: 'Sat · Jul 4',
+      title: 'Triana day, Alcázar night',
+      subtitle: 'Last shot at Mercado Triana (closed Sunday), then the big night.',
+      hero: IMG.triana,
       stops: [
         {
           time: '9:30 AM',
           name: 'Mercado de Triana',
           query: 'Mercado de Triana Sevilla',
-          notes: '7-min taxi or walk. Go early for freshness. Breakfast at a counter inside.',
+          notes: '7-minute taxi or walk. Go early for freshness. Breakfast at a counter inside.',
         },
         {
           time: '10:30 AM',
           name: 'Calle Antillano Campos · ceramics',
           query: 'Calle Antillano Campos Sevilla',
-          notes: 'Plus Calle Alfarería. Santa Ana Ceramics + Cerámica Ruiz are good stops. Real Triana tile, not airport souvenirs.',
+          notes: 'Plus Calle Alfarería. Santa Ana Ceramics and Cerámica Ruiz are good stops. Real Triana tile, not airport souvenirs.',
         },
         {
           time: '12:30 PM',
           name: 'Las Golondrinas',
           query: 'Las Golondrinas Antillano Campos Sevilla',
-          notes: 'Triana institution. Two locations: Antillano Campos + Pagés del Corro. Or back at the Mercado.',
+          notes: 'A Triana institution. Two locations: Antillano Campos and Pagés del Corro. Or back at the Mercado.',
         },
         {
           time: '1:30 PM',
@@ -544,40 +611,44 @@
           time: '9:00 PM',
           name: 'Alcázar — Puerta de la Alcoba',
           query: 'Puerta de la Alcoba Paseo Catalina de Ribera Sevilla',
-          notes: 'Taxi or walk ~25 min. Enter via the Puerta de la Alcoba on Paseo Catalina de Ribera (Murillo Gardens side), NOT the main Patio de Banderas. Gates 21:00, close 22:15 sharp.',
+          image: IMG.alcazar,
+          notes: 'Taxi or walk ~25 minutes. Enter via the Puerta de la Alcoba on Paseo Catalina de Ribera (Murillo Gardens side), NOT the main Patio de Banderas. Gates 21:00, close 22:15 sharp.',
         },
         {
           id: 'sat-gardens',
           time: '9:15 PM',
           name: 'Wander the Alcázar gardens',
           query: 'Jardines del Alcázar Sevilla',
-          notes: 'Magnolias, jasmine, fountains, Cenador de la Alcoba.',
+          notes: 'Magnolias, jasmine, fountains, the Cenador de la Alcoba.',
         },
         {
           id: 'sat-concert',
           time: '10:30 PM',
           name: 'Garden concert',
           query: 'Real Alcázar de Sevilla',
-          notes: '~75 min, €7. Walk back through cooler night streets, or grab a nightcap at Alameda.',
+          notes: '~75 minutes, €7. Walk back through cooler night streets, or grab a nightcap at Alameda.',
         },
       ],
     },
     {
       id: 'sun',
-      date: 'Sun Jul 5',
+      date: 'Sun · Jul 5',
       title: 'Plaza de España & farewell',
       subtitle: 'Slow Sunday — many shops closed, no concert, Triana market closed. Lean in.',
+      hero: IMG.plaza,
       stops: [
         {
           time: '9:00 AM',
           name: 'Plaza de España',
           query: 'Plaza de España Sevilla',
-          notes: 'Walk south, get there early — gorgeous in morning light and tolerable temperature. Rent a rowboat in the canal (€6, ~35 min).',
+          image: IMG.plaza,
+          notes: 'Walk south, get there early — gorgeous in morning light and tolerable temperature. Rent a rowboat in the canal (€6, ~35 minutes).',
         },
         {
           time: '10:00 AM',
           name: 'Parque de María Luisa',
           query: 'Parque de María Luisa Sevilla',
+          image: IMG.park,
           notes: 'Shaded paths, fountains, ponds. Wander, escape the heat.',
         },
         {
@@ -596,7 +667,8 @@
           time: '8:30 PM',
           name: 'Puente de Isabel II — farewell sunset',
           query: 'Puente de Isabel II Sevilla',
-          notes: 'Cross into Triana. Drinks on the riverside (Abades Triana for the view, more touristy) or stand on the bridge with a beer. Golden light on Torre del Oro and Giralda.',
+          image: IMG.bridge,
+          notes: 'Cross into Triana. Drinks on the riverside (Abades Triana for the view, more touristy) or stand on the bridge with a beer. Golden light on Torre del Oro and the Giralda.',
         },
       ],
     },
@@ -609,7 +681,7 @@
         { name: 'Nearest supermercado', sub: 'Live results, sorted by distance', q: 'supermercado' },
         { name: 'Mercadona', sub: 'Spanish chain — best prices', q: 'Mercadona' },
         { name: 'Carrefour Express', sub: 'Smaller, often longer hours', q: 'Carrefour Express' },
-        { name: 'Día', sub: 'Discount chain, very close', q: 'Día supermercado' },
+        { name: 'Día', sub: 'Discount chain, typically very close', q: 'Día supermercado' },
       ],
     },
     {
@@ -624,24 +696,24 @@
       heading: 'Fresh & specialty',
       items: [
         { name: 'Bakery · panadería', sub: 'Bread, breakfast pastries', q: 'panadería' },
-        { name: 'Butcher · carnicería', sub: 'Jamón, charcuterie', q: 'charcutería jamón' },
-        { name: 'Fruit · frutería', sub: 'Fresh fruit + veg', q: 'frutería' },
+        { name: 'Charcuterie · jamón', sub: 'Jamón ibérico, cured meats', q: 'charcutería jamón' },
+        { name: 'Fruit · frutería', sub: 'Fresh fruit and vegetables', q: 'frutería' },
       ],
     },
     {
       heading: 'Other',
       items: [
-        { name: 'Pharmacy · farmacia', sub: 'Look for green cross', q: 'farmacia' },
+        { name: 'Pharmacy · farmacia', sub: 'Look for the green cross', q: 'farmacia' },
         { name: '24h pharmacy', sub: 'Late-night needs', q: 'farmacia 24 horas' },
         { name: 'ATM · cajero', sub: 'Use bank ATMs (avoid Euronet)', q: 'cajero automático banco' },
         { name: 'Coffee · cafetería', sub: 'Morning espresso', q: 'cafetería' },
-        { name: 'Tobacco shop · estanco', sub: 'Stamps, transit passes too', q: 'estanco' },
+        { name: 'Tobacco shop · estanco', sub: 'Stamps and transit passes too', q: 'estanco' },
       ],
     },
   ];
 
   const TABS = [
-    ...days.map(d => ({ id: d.id, label: d.date })),
+    ...days.map(d => ({ id: d.id, label: d.date.split(' · ')[0] })),
     { id: 'essentials', label: 'Essentials' },
     { id: 'tickets', label: 'Tickets' },
   ];
@@ -676,36 +748,36 @@
       }
 
       let action = '';
-      if (s.isHome) {
-        // Home / pool entries — no maps button
-        action = '';
-      } else if (s.query) {
+      if (!s.isHome && s.query) {
         const url = directTo(s.query, s.mode || 'walking');
-        action = `<a class="btn" href="${url}" target="_blank" rel="noopener">Directions</a>`;
+        action = `<a class="cta outline" href="${url}" target="_blank" rel="noopener">Directions</a>`;
       }
 
       const homeClass = s.isHome ? ' is-home' : '';
+      const img = s.image ? `<img class="stop-image" src="${s.image}" alt="${escapeHtml(s.name)}" loading="lazy" />` : '';
 
       return `
-        <div class="stop${homeClass}">
-          <div class="stop-header">
-            <div class="stop-time">${escapeHtml(s.time)}</div>
+        <article class="stop${homeClass}">
+          <div class="stop-meta">
+            <span class="stop-time">${escapeHtml(s.time)}</span>
             ${pill}
           </div>
-          <div class="stop-name">${escapeHtml(s.name)}</div>
+          <h3 class="stop-name">${escapeHtml(s.name)}</h3>
+          ${img}
           ${s.notes ? `<p class="stop-notes">${escapeHtml(s.notes)}</p>` : ''}
           ${action ? `<div class="actions">${action}</div>` : ''}
-        </div>
+        </article>
       `;
     }).join('');
 
     contentEl.innerHTML = `
+      ${day.hero ? `<img class="hero" src="${day.hero}" alt="${escapeHtml(day.title)}" />` : ''}
       <div class="day-header">
-        <div class="day-eyebrow">${escapeHtml(day.date)}</div>
+        <div class="eyebrow">${escapeHtml(day.date)}</div>
         <h2>${escapeHtml(day.title)}</h2>
         <p>${escapeHtml(day.subtitle)}</p>
       </div>
-      ${stopsHtml}
+      <div class="stops">${stopsHtml}</div>
     `;
   }
 
@@ -719,7 +791,7 @@
               <div class="essential-name">${escapeHtml(it.name)}</div>
               <div class="essential-sub">${escapeHtml(it.sub)}</div>
             </div>
-            <div class="essential-arrow">›</div>
+            <div class="essential-arrow">→</div>
           </a>
         `).join('')}
       </div>
@@ -727,13 +799,13 @@
 
     contentEl.innerHTML = `
       <div class="day-header">
-        <div class="day-eyebrow">Around the Airbnb</div>
+        <div class="eyebrow">Around the apartment</div>
         <h2>Essentials</h2>
-        <p>Live Google Maps searches centered on the apartment. Tap one — Maps shows the nearest options sorted by distance.</p>
+        <p>Live Google Maps searches centered on the Airbnb. Tap one — Maps shows the nearest options sorted by distance.</p>
       </div>
       <div class="address-card">
         <div class="label">Apartment</div>
-        ${escapeHtml(AIRBNB)}
+        <div class="addr">${escapeHtml(AIRBNB)}</div>
       </div>
       ${sections}
     `;
@@ -748,13 +820,13 @@
     const items = tickets.map(t => {
       const isChecked = !!state[t.id];
       return `
-        <div class="ticket ${isChecked ? 'checked' : ''}" data-id="${t.id}">
+        <div class="ticket ${isChecked ? 'checked' : ''}">
           <button class="checkbox ${isChecked ? 'checked' : ''}" aria-label="Toggle booked" data-toggle="${t.id}"></button>
           <div class="ticket-body">
             <p class="ticket-when">${escapeHtml(t.when)}</p>
             <p class="ticket-name">${escapeHtml(t.name)}</p>
             <p class="ticket-note">${escapeHtml(t.note)}</p>
-            <a class="btn" href="${t.url}" target="_blank" rel="noopener">Book →</a>
+            <a class="cta" href="${t.url}" target="_blank" rel="noopener">Book</a>
           </div>
         </div>
       `;
@@ -762,15 +834,15 @@
 
     contentEl.innerHTML = `
       <div class="day-header">
-        <div class="day-eyebrow">Book in advance</div>
+        <div class="eyebrow">Book in advance</div>
         <h2>Tickets to buy</h2>
-        <p>Tap the box once you’ve booked. The agenda will switch to “✓ Booked”.</p>
+        <p>Tap the box once you’ve booked. The agenda flips to “Booked”.</p>
       </div>
       <div class="progress">
-        <div class="progress-bar"><div style="width:${pct}%"></div></div>
         <div class="progress-text"><strong>${done}</strong> of ${total} booked</div>
+        <div class="progress-bar"><div style="width:${pct}%"></div></div>
       </div>
-      ${items}
+      <div class="tickets-wrap">${items}</div>
     `;
 
     contentEl.querySelectorAll('[data-toggle]').forEach(btn => {

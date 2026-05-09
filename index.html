@@ -4,61 +4,92 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Avery's HTMLs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" />
 <style>
   :root {
-    --bg: #fdf8f3;
-    --ink: #1c1917;
-    --muted: #78716c;
-    --accent: #c2410c;
-    --card: #ffffff;
-    --border: #e7e5e4;
+    --bg: #f3ecdf;
+    --paper: #fbf6ec;
+    --ink: #1c1812;
+    --ink-2: #3a3228;
+    --muted: #8a7c6c;
+    --line: #ddd1bb;
+    --line-soft: #e8dec9;
   }
-  * { box-sizing: border-box; }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   html, body {
     margin: 0;
     background: var(--bg);
     color: var(--ink);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
   }
   main {
-    max-width: 560px;
+    max-width: 600px;
     margin: 0 auto;
-    padding: 48px 20px;
+    padding: 64px 24px;
+  }
+  .eyebrow {
+    text-transform: uppercase;
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    color: var(--muted);
+    font-weight: 500;
+    margin-bottom: 16px;
   }
   h1 {
-    font-size: 28px;
-    letter-spacing: -0.02em;
-    margin: 0 0 6px;
+    font-size: 36px;
+    font-weight: 300;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    margin: 0 0 12px;
   }
-  .sub { color: var(--muted); margin: 0 0 28px; }
+  .sub { color: var(--ink-2); margin: 0 0 36px; max-width: 480px; }
   .card {
     display: block;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 18px 20px;
-    margin-bottom: 12px;
+    padding: 22px 0;
     text-decoration: none;
     color: inherit;
-    transition: transform 0.1s, border-color 0.15s;
+    border-top: 1px solid var(--line-soft);
   }
-  .card:hover { border-color: var(--accent); transform: translateY(-1px); }
-  .card h2 {
-    margin: 0 0 4px;
-    font-size: 17px;
-    letter-spacing: -0.01em;
+  .card:first-of-type { border-top: 1px solid var(--line); }
+  .card:last-of-type { border-bottom: 1px solid var(--line-soft); }
+  .card .meta {
+    text-transform: uppercase;
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    color: var(--muted);
+    font-weight: 500;
+    margin-bottom: 6px;
   }
-  .card p { margin: 0; color: var(--muted); font-size: 14px; }
+  .card .title {
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    margin: 0;
+    line-height: 1.25;
+  }
+  .card .title .arrow {
+    font-size: 18px;
+    color: var(--ink);
+    transition: transform 0.15s;
+  }
+  .card:hover .title .arrow { transform: translateX(4px); }
+  .card .desc { margin: 6px 0 0; color: var(--muted); font-size: 14.5px; }
 </style>
 </head>
 <body>
 <main>
-  <h1>Avery's HTMLs</h1>
-  <p class="sub">Random pages I make.</p>
+  <div class="eyebrow">Avery Kepple</div>
+  <h1>HTMLs</h1>
+  <p class="sub">Random pages.</p>
   <a class="card" href="/seville/">
-    <h2>Seville · Jul 1–5, 2026</h2>
-    <p>Trip agenda with maps and ticket checklist.</p>
+    <div class="meta">Trip · Jul 1–5, 2026</div>
+    <div class="title"><span>Seville</span><span class="arrow">→</span></div>
+    <p class="desc">Five-day agenda with maps, ticket checklist, and essentials around the Airbnb.</p>
   </a>
 </main>
 </body>
