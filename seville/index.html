@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#1c1812" />
-<title>Seville · Jul 1–5</title>
+<title>Seville → Granada → Málaga · Jul 1–10</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" />
@@ -44,7 +44,9 @@
     display: flex; align-items: center; justify-content: space-between;
     gap: 12px;
     padding: 16px 20px 8px;
+    flex-wrap: wrap;
   }
+  .home-btns { display: flex; gap: 8px; flex: 0 0 auto; flex-wrap: wrap; }
   .brand {
     font-size: 11px;
     letter-spacing: 0.22em;
@@ -99,6 +101,89 @@
     color: var(--bg);
     border-color: var(--ink);
   }
+
+  /* NAV DROPDOWNS */
+  .nav { display: flex; gap: 8px; padding: 6px 20px 12px; flex-wrap: wrap; }
+  .menu { position: relative; }
+  .nav-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 7px 14px; border-radius: 999px;
+    border: 1px solid var(--line); background: transparent;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--muted); cursor: pointer;
+    font-family: inherit; white-space: nowrap;
+  }
+  .nav-btn.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .nav-btn .chev { font-size: 9px; }
+  .menu-panel {
+    position: absolute; top: calc(100% + 6px); left: 0; z-index: 30;
+    min-width: 190px; background: var(--paper);
+    border: 1px solid var(--line);
+    box-shadow: 0 10px 30px rgba(28,24,18,0.14);
+    padding: 6px; display: none; max-height: 64vh; overflow-y: auto;
+  }
+  .menu.open .menu-panel { display: block; }
+  .menu-item {
+    display: block; width: 100%; text-align: left;
+    padding: 9px 12px; border: none; background: transparent;
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-2); cursor: pointer; font-family: inherit;
+  }
+  .menu-item:hover { background: var(--bg-2); }
+  .menu-item.active { color: var(--ink); font-weight: 600; }
+
+  /* DANCE / VENUES */
+  .venue { padding: 18px 0; border-bottom: 1px solid var(--line-soft); }
+  .venue:last-child { border-bottom: none; }
+  .venue-name { font-size: 17px; color: var(--ink); margin-bottom: 6px; }
+  .venue-summary { color: var(--ink-2); font-size: 14.5px; margin: 0 0 10px; line-height: 1.6; }
+  .venue-meta { font-size: 13px; color: var(--muted); margin: 0 0 6px; line-height: 1.55; }
+  .venue-meta strong { color: var(--ink-2); font-weight: 500; }
+  .venue-addr {
+    display: inline-block; margin-top: 8px; font-size: 13.5px;
+    color: var(--ink); text-decoration: none;
+    border-bottom: 1px solid var(--line); padding-bottom: 2px;
+  }
+  .venue-addr:hover { border-color: var(--ink); }
+
+  /* MAP */
+  .map-wrap { padding: 8px 20px 44px; }
+  .map-frame { width: 100%; height: 340px; border: 1px solid var(--line); display: block; }
+  .map-cap { font-size: 12px; color: var(--muted); margin-top: 10px; max-width: 580px; }
+
+  /* STEP-BY-STEP EXPANDERS */
+  .steps { border-top: 1px solid var(--line-soft); margin-top: 16px; }
+  .steps summary {
+    list-style: none; cursor: pointer;
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 0;
+    font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase;
+    font-weight: 500; color: var(--ink);
+  }
+  .steps summary::-webkit-details-marker { display: none; }
+  .steps-plus {
+    flex: 0 0 auto;
+    width: 20px; height: 20px;
+    border: 1px solid var(--ink);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 14px; line-height: 1;
+  }
+  .steps-plus::after { content: '+'; }
+  .steps[open] .steps-plus::after { content: '−'; }
+  .steps-body { padding: 2px 0 16px; font-size: 14px; color: var(--ink-2); line-height: 1.6; }
+  .steps-body h4 {
+    font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--ink); margin: 14px 0 6px; font-weight: 600;
+  }
+  .steps-body ul { margin: 0 0 12px; padding-left: 18px; }
+  .steps-body li { margin-bottom: 6px; }
+  .steps-body p { margin: 8px 0; }
+  .steps-sub { font-weight: 600; color: var(--ink); font-size: 13.5px; }
+  .steps-src { font-size: 12px; color: var(--muted); margin-top: 12px; }
+  .steps-src a { color: var(--muted); }
+  .stop-steps { padding: 18px 0; }
+  .stop-steps .steps { border-top: none; margin-top: 0; }
+  .stop-steps summary { padding: 0; }
 
   /* MAIN LAYOUT */
   main { padding: 0 0 80px; max-width: 720px; margin: 0 auto; }
@@ -364,30 +449,41 @@
     .essentials-section, .tickets-wrap { padding: 0 32px; }
     .address-card, .progress { margin-left: 32px; margin-right: 32px; }
     .day-header h2 { font-size: 44px; }
+    .map-wrap { padding-left: 32px; padding-right: 32px; }
   }
 </style>
 </head>
 <body>
 <header>
   <div class="header-row">
-    <div class="brand">Seville <span class="sep">·</span> Jul 1–5</div>
-    <a class="home-btn" id="home-btn" href="#" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12 12 3l9 9"/><path d="M5 10v10h14V10"/></svg>
-      Airbnb
-    </a>
+    <div class="brand">Seville → Granada → Málaga <span class="sep">·</span> Jul 1–10</div>
+    <div class="home-btns">
+      <a class="home-btn" id="home-btn" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12 12 3l9 9"/><path d="M5 10v10h14V10"/></svg>
+        Airbnb Seville
+      </a>
+      <a class="home-btn" id="home-btn-granada" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12 12 3l9 9"/><path d="M5 10v10h14V10"/></svg>
+        Airbnb Granada
+      </a>
+    </div>
   </div>
-  <div class="tabs" role="tablist" id="tabs"></div>
+  <nav class="nav" id="nav"></nav>
 </header>
 <main id="content"></main>
 <script>
   const AIRBNB = 'C/ de Sta. Clara, 4, Casco Antiguo, 41002 Sevilla, Spain';
+  const AIRBNB_GRANADA = 'Calle Hoteles Belén Calle C, 8, 18009 Granada, Spain';
 
   const directTo = (q, mode = 'walking') =>
     `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(q)}&travelmode=${mode}`;
+  const directBetween = (from, to, mode = 'walking') =>
+    `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(from)}&destination=${encodeURIComponent(to)}&travelmode=${mode}`;
   const searchNearAirbnb = (q) =>
     `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q + ' near ' + AIRBNB)}`;
 
   document.getElementById('home-btn').href = directTo(AIRBNB, 'walking');
+  document.getElementById('home-btn-granada').href = directTo(AIRBNB_GRANADA, 'walking');
 
   // image library — Wikimedia Commons URLs (stable, hotlinkable)
   const IMG = {
@@ -399,15 +495,17 @@
     plaza:   'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Plaza_de_Espa%C3%B1a_%28Sevilla%29_-_01.jpg/1280px-Plaza_de_Espa%C3%B1a_%28Sevilla%29_-_01.jpg',
     park:    'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Parque_de_Mar%C3%ADa_Luisa_%282%29.jpg/1280px-Parque_de_Mar%C3%ADa_Luisa_%282%29.jpg',
     cathedral: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Sevilla_Cathedral_-_Southeast.jpg/1280px-Sevilla_Cathedral_-_Southeast.jpg',
+    granada: 'https://commons.wikimedia.org/wiki/Special:FilePath/Alhambra_evening_panorama_Mirador_San_Nicolas_sRGB-1.jpg?width=1280',
   };
 
   const tickets = [
     {
       id: 'alcazar-day',
-      name: 'Real Alcázar — daytime entry',
-      when: 'Fri Jul 3 · 9:30 AM',
-      note: 'Pay extra for Royal Apartments — worth it. Sells out 4–6 weeks ahead in July.',
+      name: 'Real Alcázar — private guided tour',
+      when: 'Fri Jul 3 · 11:30 AM',
+      note: 'Private guided tour, 11:30 AM — covers interiors + Royal Apartments.',
       url: 'https://www.alcazarsevilla.org/',
+      booked: true,
     },
     {
       id: 'flamenco',
@@ -415,13 +513,23 @@
       when: 'Fri Jul 3 · 9:00 PM',
       note: '~€24, ~50 seats, ~75 min. Book ~3–5 days out. Arrive 30 min early for first-come seats.',
       url: 'https://casadelamemoria.es/',
+      booked: false,
     },
     {
       id: 'alcazar-concert',
       name: 'Real Alcázar — night garden concert',
-      when: 'Sat Jul 4 · 10:30 PM',
-      note: '€7. Watch for the 2026 program drop mid-to-late June. Enter via Puerta de la Alcoba (Murillo Gardens side).',
+      when: 'Sat Jul 4 · 9:00 PM',
+      note: 'Mozart & Schubert piano. Patio de Butacas, Row 17. Gates close 10:25 PM sharp.',
       url: 'https://www.alcazarsevilla.org/',
+      booked: true,
+    },
+    {
+      id: 'car-transfer',
+      name: 'Transportation — Granada → Málaga (TBD)',
+      when: 'Wed Jul 8',
+      note: 'Book transport from Granada to Málaga on Jul 8 — train, bus, or private transfer (~1.5–2.5 hr). Still to decide.',
+      url: 'https://www.google.com/maps/dir/?api=1&origin=Granada%2C+Spain&destination=M%C3%A1laga%2C+Spain&travelmode=driving',
+      booked: false,
     },
   ];
   const stopTicket = {
@@ -429,8 +537,74 @@
     'fri-flamenco': 'flamenco',
     'sat-alcazar-entry': 'alcazar-concert',
     'sat-gardens': 'alcazar-concert',
+    'sat-seats': 'alcazar-concert',
     'sat-concert': 'alcazar-concert',
   };
+
+  const GUIDE_MALAGA = `
+    <h4>Step 1 · Step inside the station</h4>
+    <ul>
+      <li>Have your driver drop you at the main entrance of Málaga-María Zambrano station (it shares a building with the Vialia Shopping Mall).</li>
+      <li>Walk past the doors straight into the large, open main concourse.</li>
+    </ul>
+    <h4>Step 2 · Head to the security checkpoints</h4>
+    <ul>
+      <li>Look straight ahead to the back of the hall — you'll see the luggage X-ray lines and ticket gates.</li>
+      <li>Check the overhead boards for your platform, but all mainline trains are on this ground floor. No elevators or stairs — the tracks are all at ground level.</li>
+    </ul>
+    <h4>Step 3 · Clear the luggage check</h4>
+    <ul>
+      <li>Have your boarding barcodes ready on your phone (or paper).</li>
+      <li>Lay your three large suitcases flat on the X-ray conveyor. No need to pull out liquids or laptops — it's a quick check for large hazards only.</li>
+      <li>Scan your ticket barcodes at the gate to enter the departures zone.</li>
+    </ul>
+    <h4>Step 4 · Find Coach 1 and board</h4>
+    <ul>
+      <li>Walk down your assigned platform.</li>
+      <li>Use the screens over the platform or the labels on the cars to find Coche 1 (Coach 1). Heading toward Seville, Coach 1 is usually farthest down the platform — keep walking.</li>
+      <li>Step onto Coach 1 and drop your three suitcases onto the metal luggage racks right at the entrance.</li>
+    </ul>
+    <h4>Step 5 · Take your seats</h4>
+    <ul>
+      <li>Walk down the aisle of Coach 1.</li>
+      <li>Find Seat 2C and the seat next to it, right at the front of the cabin. Sit back and enjoy the ride to Seville.</li>
+    </ul>
+    <p class="steps-src">Sources:
+      <a href="https://www.tripadvisor.com/ShowTopic-g187438-i333-k15410945-Malaga_Maria_Zambrano_security-Malaga_Costa_del_Sol_Province_of_Malaga_Andalucia.html" target="_blank" rel="noopener">1</a>,
+      <a href="https://www.seat61.com/stations/malaga.htm" target="_blank" rel="noopener">2</a>,
+      <a href="https://lockandenjoy.com/en/malaga-chooselockers/maria-zambrano-en/" target="_blank" rel="noopener">3</a>,
+      <a href="https://showmethejourney.com/train-travel-info/countries/spain/cities/malaga/rail-stations/malaga-maria-zambrano/" target="_blank" rel="noopener">4</a>,
+      <a href="https://www.reddit.com/r/MalagaTourism/comments/1sj1inw/time_needed_after_landing_at_malaga_agp_airport/" target="_blank" rel="noopener">5</a>,
+      <a href="https://www.facebook.com/groups/welovesevilla/posts/735669855642827/" target="_blank" rel="noopener">6</a>
+    </p>
+  `;
+
+  const GUIDE_ARRIVAL = `
+    <h4>Step 1 · Step off the train</h4>
+    <ul>
+      <li>Grab your three suitcases from the luggage rack at the entrance of Coach 1.</li>
+      <li>Step onto the platform and follow the crowd toward the front/center of the platform.</li>
+    </ul>
+    <h4>Step 2 · Take the ramp up to the concourse</h4>
+    <ul>
+      <li>Look for the long, gently sloping pedestrian ramps (or elevators) at the end of the tracks.</li>
+      <li>Take the ramp up to the main concourse — skip the stairs; the ramps are built for rolling heavy luggage.</li>
+    </ul>
+    <h4>Step 3 · Choose your pickup (exit directions)</h4>
+    <p>At the top of the ramp, in the main hall, look up at the overhead signs and pick one:</p>
+    <p class="steps-sub">Option A · Official taxi rank (fastest and easiest)</p>
+    <ul>
+      <li>Follow the overhead Taxi signs toward the Main Front Exit (Salida Principal).</li>
+      <li>Out the front doors is a managed queue of official white Seville taxis at the curb.</li>
+      <li>Step up to the first taxi — drivers will gladly load your three suitcases.</li>
+    </ul>
+    <p class="steps-sub">Option B · Uber / Cabify / Bolt</p>
+    <ul>
+      <li>Follow the Salida Lateral (Side Exit) signs toward Avenida de Kansas City.</li>
+      <li>Out the side doors is the passenger pickup/drop-off zone along the lateral road.</li>
+      <li>Don't order until you're physically outside at the side exit — drivers can only wait a couple of minutes.</li>
+    </ul>
+  `;
 
   const days = [
     {
@@ -441,17 +615,40 @@
       hero: IMG.alameda,
       stops: [
         {
-          time: 'Late afternoon',
+          stepsOnly: true,
+          steps: [
+            { label: 'Step-by-step · Málaga-María Zambrano station', html: GUIDE_MALAGA },
+          ],
+        },
+        {
+          time: '2:37 PM',
+          name: 'Train · Málaga → Sevilla',
+          notes: 'Renfe from Málaga-María Zambrano, departs 2:37 PM, arrives Sevilla-Santa Justa 4:50 PM (local time). Confirmation 7HKF7J. Travelling with Matt.',
+        },
+        {
+          stepsOnly: true,
+          steps: [
+            { label: 'Arrival at Sevilla-Santa Justa', html: GUIDE_ARRIVAL },
+          ],
+        },
+        {
+          time: '5:00 PM',
           name: 'Arrive at the Airbnb',
           query: AIRBNB,
           mode: 'driving',
-          notes: 'C/ de Sta. Clara 4, Casco Antiguo. Drop bags, take a long shower, decompress. Don’t try to hit the city in the heat — wait for it to cool.',
+          notes: 'Taxi from Sevilla-Santa Justa, ~10 min, to C/ de Sta. Clara 4, Casco Antiguo. Drop bags, take a long shower, decompress. Don’t try to hit the city in the heat — wait for it to cool.',
         },
         {
           time: '6:00 PM',
           name: 'First essentials run',
           query: 'supermercado near ' + AIRBNB,
           notes: 'Stock the apartment: still water (lots), coffee for the morning, fresh fruit, jamón and bread for breakfast, a couple of bottles of wine and beer for the pool. The Essentials tab has every category mapped near the door.',
+        },
+        {
+          time: '6:30 PM',
+          name: 'ALE-HOP · pool floats',
+          query: 'ALE-HOP Calle Laraña 8 Sevilla',
+          notes: 'Grab pool floats here. ~12-minute walk (850 m) southeast down Calle Jesús del Gran Poder, right by Las Setas (Metropol Parasol). Open 10:00 AM–midnight daily.',
         },
         {
           time: '7:00 PM',
@@ -530,20 +727,20 @@
       stops: [
         {
           id: 'fri-alcazar',
-          time: '9:30 AM',
-          name: 'Real Alcázar de Sevilla',
+          time: '11:30 AM',
+          name: 'Real Alcázar · private guided tour',
           query: 'Real Alcázar de Sevilla',
           image: IMG.alcazar,
-          notes: 'Walk down through Centro, ~20 minutes. Go early — it’s cool and quiet. Pay extra for the Royal Apartments; it’s worth the full thing.',
+          notes: 'Private guided tour booked, 11:30 AM (with Matt). Walk down through Centro ~20 min — leave by 11:00 to meet your guide at the entrance ~11:15. The guide covers the palace interiors and Royal Apartments, the real showstopper. Linger in the gardens after.',
         },
         {
-          time: '11:30 AM',
+          time: '12:45 PM',
           name: 'Barrio Santa Cruz',
           query: 'Plaza de Doña Elvira Sevilla',
           notes: 'Walk straight in next door. Wander the alleys: Plaza de Doña Elvira, Plaza de los Venerables.',
         },
         {
-          time: '12:30 PM',
+          time: '1:15 PM',
           name: 'Las Teresas',
           query: 'Las Teresas Sevilla',
           notes: 'Classic, hams hanging from the ceiling. Or Vinería San Telmo for a more modern take.',
@@ -609,32 +806,39 @@
         {
           id: 'sat-alcazar-entry',
           time: '9:00 PM',
-          name: 'Alcázar — Puerta de la Alcoba',
+          name: 'Concert · arrival & entry',
           query: 'Puerta de la Alcoba Paseo Catalina de Ribera Sevilla',
           image: IMG.alcazar,
-          notes: 'Taxi or walk ~25 minutes. Enter via the Puerta de la Alcoba on Paseo Catalina de Ribera (Murillo Gardens side), NOT the main Patio de Banderas. Gates 21:00, close 22:15 sharp.',
+          notes: 'Gates open 21:00. Enter via the Puerta de la Alcoba on Paseo Catalina de Ribera (Murillo Gardens side), NOT the main Patio de Banderas. Taxi or walk ~25 minutes.',
         },
         {
           id: 'sat-gardens',
           time: '9:15 PM',
-          name: 'Wander the Alcázar gardens',
+          name: 'Wander the illuminated gardens',
           query: 'Jardines del Alcázar Sevilla',
-          notes: 'Magnolias, jasmine, fountains, the Cenador de la Alcoba.',
+          notes: 'Stroll the lit paths and orange-grove ambiance — magnolias, jasmine, the Cenador de la Alcoba. Grab a drink at the pop-up bar before the music.',
+        },
+        {
+          id: 'sat-seats',
+          time: '10:15 PM',
+          name: 'Find your seats',
+          query: 'Real Alcázar de Sevilla',
+          notes: 'Patio de Butacas, Row 17. Settle in before the crowd packs in. Gates close 22:25 (10:25 PM) sharp — after that you cannot get in.',
         },
         {
           id: 'sat-concert',
           time: '10:30 PM',
-          name: 'Garden concert',
+          name: 'Music begins · Mozart & Schubert',
           query: 'Real Alcázar de Sevilla',
-          notes: '~75 minutes, €7. Walk back through cooler night streets, or grab a nightcap at Alameda.',
+          notes: 'Piano performance, ~75 minutes, €7. Walk back through cooler night streets, or grab a nightcap at Alameda.',
         },
       ],
     },
     {
       id: 'sun',
       date: 'Sun · Jul 5',
-      title: 'Plaza de España & farewell',
-      subtitle: 'Slow Sunday — many shops closed, no concert, Triana market closed. Lean in.',
+      title: 'Seville morning, train to Granada',
+      subtitle: 'Catch Plaza de España early, then the 12:35 train and a first night in Granada.',
       hero: IMG.plaza,
       stops: [
         {
@@ -649,26 +853,255 @@
           name: 'Parque de María Luisa',
           query: 'Parque de María Luisa Sevilla',
           image: IMG.park,
-          notes: 'Shaded paths, fountains, ponds. Wander, escape the heat.',
+          notes: 'Shaded paths, fountains, ponds. A last Seville wander, plus a quick coffee and pastry on the way back.',
+        },
+        {
+          time: '11:15 AM',
+          name: 'Pack & check out',
+          isHome: true,
+          notes: 'Final sweep of the apartment, pack, check out. Leave buffer — you have a midday train.',
         },
         {
           time: '12:00 PM',
-          name: 'Casa Plácido',
-          query: 'Casa Plácido Sevilla',
-          notes: 'Old-school, walls covered in bullfighting memorabilia, near the Cathedral. Or Chinchilla back near Alameda.',
+          name: 'Taxi to Sevilla-Santa Justa',
+          query: 'Sevilla-Santa Justa',
+          mode: 'driving',
+          notes: 'Aim to be at the station ~20 minutes before departure.',
         },
         {
-          time: '1:00 PM',
-          name: 'Final pool afternoon',
-          isHome: true,
-          notes: '',
+          time: '12:35 PM',
+          name: 'Train · Sevilla → Granada',
+          notes: 'Renfe from Sevilla-Santa Justa, departs 12:35 PM, arrives Granada 3:25 PM (local time). Confirmation H5XCW9. Travelling with Matt.',
+        },
+        {
+          time: '4:00 PM',
+          name: 'Taxi to the Airbnb · Granada',
+          from: 'Estación de tren de Granada',
+          query: AIRBNB_GRANADA,
+          mode: 'driving',
+          notes: 'Calle Hoteles Belén, Calle C, 8. Check-in from 4:00 PM. Drop bags, settle in, then head out for the first evening.',
+        },
+        {
+          time: '8:00 PM',
+          name: 'Mirador de San Nicolás',
+          from: AIRBNB_GRANADA,
+          query: 'Mirador de San Nicolás Granada',
+          notes: 'Climb into the Albaicín for the classic sunset view of the Alhambra glowing against the Sierra Nevada. Get there before sunset for a spot on the wall.',
+        },
+        {
+          time: '9:30 PM',
+          name: 'Tapas in the Albaicín',
+          from: 'Mirador de San Nicolás Granada',
+          query: 'tapas Albaicín Granada',
+          notes: 'Granada still gives a free tapa with every drink. Bar-hop a few — that is dinner.',
+        },
+      ],
+    },
+    {
+      id: 'mon',
+      date: 'Mon · Jul 6',
+      title: 'The Alhambra',
+      subtitle: 'The big one — Nasrid Palaces guided tour, a midday break, then a riverside evening.',
+      hero: IMG.granada,
+      stops: [
+        {
+          id: 'mon-alhambra',
+          time: '9:30 AM',
+          name: 'Alhambra & Nasrid Palaces · guided tour',
+          from: AIRBNB_GRANADA,
+          query: 'Alhambra Puerta del Generalife Granada',
+          image: IMG.granada,
+          notes: 'Guided tour with tickets, 9:30–10:30 AM. Meet at P.º del Generalife, 1F (Generalife entrance). Walk up from the Airbnb (~25 min uphill) or grab a taxi. Nasrid Palace entry times are strict — arrive early with photo ID matching the booking.',
+        },
+        {
+          time: '10:30 AM',
+          name: 'Generalife gardens & Alcazaba',
+          query: 'Generalife Granada',
+          notes: 'After the guided portion, take your time through the Generalife gardens and climb the Alcazaba ramparts for the city views.',
+        },
+        {
+          time: '12:00 PM',
+          name: 'Back to the Airbnb · midday break',
+          from: 'Alhambra Granada',
+          query: AIRBNB_GRANADA,
+          mode: 'driving',
+          notes: 'Retreat from the heat, 12–4. Rest, regroup, cool off before heading out again.',
+        },
+        {
+          time: '5:00 PM',
+          name: 'Carrera del Darro & Paseo de los Tristes',
+          from: AIRBNB_GRANADA,
+          query: 'Paseo de los Tristes Granada',
+          notes: 'The prettiest walk in the city — cobbles along the river beneath the Alhambra walls.',
         },
         {
           time: '8:30 PM',
-          name: 'Puente de Isabel II — farewell sunset',
-          query: 'Puente de Isabel II Sevilla',
-          image: IMG.bridge,
-          notes: 'Cross into Triana. Drinks on the riverside (Abades Triana for the view, more touristy) or stand on the bridge with a beer. Golden light on Torre del Oro and the Giralda.',
+          name: 'Dinner with a view',
+          query: 'restaurantes Paseo de los Tristes Granada',
+          notes: 'Terrace dinner looking up at the floodlit Alhambra. Reserve a view table ahead.',
+        },
+      ],
+    },
+    {
+      id: 'tue',
+      date: 'Tue · Jul 7',
+      title: 'Granada — old city',
+      subtitle: 'Cathedral and Royal Chapel, the silk-market lanes, then a Sacromonte flamenco cave.',
+      hero: IMG.granada,
+      stops: [
+        {
+          time: '9:30 AM',
+          name: 'Catedral & Capilla Real',
+          from: AIRBNB_GRANADA,
+          query: 'Capilla Real de Granada',
+          notes: 'The Royal Chapel holds the tombs of Isabella and Ferdinand. The Cathedral next door is one of Spain’s great Renaissance interiors.',
+        },
+        {
+          time: '11:00 AM',
+          name: 'Alcaicería & Bib-Rambla',
+          query: 'Alcaicería Granada',
+          notes: 'The old Moorish silk market — narrow lanes of tiles, lamps and spice stalls — spilling into the cafés of Plaza Bib-Rambla.',
+        },
+        {
+          time: '12:00 PM',
+          name: 'Back to the Airbnb · midday break',
+          from: 'Catedral de Granada',
+          query: AIRBNB_GRANADA,
+          mode: 'driving',
+          notes: 'Out of the midday heat, 12–4. Rest and reset for the evening.',
+        },
+        {
+          time: '5:30 PM',
+          name: 'Hammam Al Ándalus · Arab baths',
+          from: AIRBNB_GRANADA,
+          query: 'Hammam Al Ándalus Granada',
+          notes: 'Optional but lovely — thermal baths in a restored Moorish bathhouse. Book a slot ahead.',
+        },
+        {
+          time: '9:00 PM',
+          name: 'Sacromonte zambra flamenco',
+          from: AIRBNB_GRANADA,
+          query: 'Sacromonte cuevas flamenco Granada',
+          mode: 'driving',
+          notes: 'Flamenco in the whitewashed cave houses of Sacromonte — the Granada gitano tradition. Cuevas de la Rocío or Venta El Gallo are the classics.',
+        },
+      ],
+    },
+    {
+      id: 'wed8',
+      date: 'Wed · Jul 8',
+      title: 'Granada → Málaga',
+      subtitle: 'Last Granada morning, transport to Málaga, check in at Palacio Solecio.',
+      hero: IMG.granada,
+      stops: [
+        {
+          time: '9:00 AM',
+          name: 'Slow Granada morning',
+          from: AIRBNB_GRANADA,
+          query: 'Plaza Nueva Granada',
+          notes: 'Breakfast in Plaza Nueva, a last wander and any final souvenirs before you pack up.',
+        },
+        {
+          time: '10:30 AM',
+          name: 'Check out · pack up',
+          isHome: true,
+          notes: 'Checkout is 11:00 AM. Final sweep of the Granada Airbnb, bags together, ready for the transfer.',
+        },
+        {
+          time: '11:30 AM',
+          name: 'Transport to Málaga · TBD',
+          from: AIRBNB_GRANADA,
+          query: 'Málaga, Spain',
+          mode: 'driving',
+          notes: 'Granada → Málaga, ~1.5–2.5 hr depending on train, bus or private transfer. Still to book — see the Tickets tab.',
+        },
+        {
+          time: '3:00 PM',
+          name: 'Check in · Palacio Solecio',
+          query: 'Palacio Solecio Málaga',
+          mode: 'driving',
+          notes: 'Palacio Solecio, a Small Luxury Hotel of the World. Solecio Deluxe Double Room (2 twin or 1 king). Check-in from 3:00 PM, on Calle Granada in the heart of the old town.',
+        },
+        {
+          time: '6:00 PM',
+          name: 'Málaga old town & Calle Larios',
+          from: 'Palacio Solecio Málaga',
+          query: 'Calle Larios Málaga',
+          notes: 'Stroll the marble main street, the Cathedral and Plaza de la Constitución. Ease into the evening.',
+        },
+        {
+          time: '9:00 PM',
+          name: 'Dinner in the centro',
+          query: 'restaurantes centro histórico Málaga',
+          notes: 'Tapas around the old town — El Pimpi is the famous one, or wander the smaller bars off Calle Granada.',
+        },
+      ],
+    },
+    {
+      id: 'thu9',
+      date: 'Thu · Jul 9',
+      title: 'Málaga',
+      subtitle: 'Moorish fortress, Picasso, and an afternoon at the beach.',
+      stops: [
+        {
+          time: '9:30 AM',
+          name: 'Alcazaba & Gibralfaro',
+          from: 'Palacio Solecio Málaga',
+          query: 'Alcazaba de Málaga',
+          notes: 'Go early before the heat. The hilltop Moorish fortress and castle give the best views over the port.',
+        },
+        {
+          time: '11:30 AM',
+          name: 'Museo Picasso Málaga',
+          query: 'Museo Picasso Málaga',
+          notes: 'Picasso was born here. The museum sits a couple of minutes from the hotel.',
+        },
+        {
+          time: '1:00 PM',
+          name: 'Lunch at the Mercado',
+          query: 'Mercado Central de Atarazanas Málaga',
+          notes: 'The Atarazanas market for fresh seafood, or a long lunch nearby.',
+        },
+        {
+          time: '2:30 PM',
+          name: 'Back to the hotel · siesta',
+          isHome: true,
+          notes: 'Duck into the hotel through the hottest stretch of the day.',
+        },
+        {
+          time: '5:00 PM',
+          name: 'La Malagueta beach',
+          from: 'Palacio Solecio Málaga',
+          query: 'Playa de la Malagueta Málaga',
+          notes: 'City beach a short walk from the centre. Swim, then a drink on the sand.',
+        },
+        {
+          time: '8:30 PM',
+          name: 'Espetos at a chiringuito',
+          query: 'chiringuito espeto sardinas Málaga',
+          notes: 'Sardines skewered and grilled over driftwood on the beach — the Málaga classic. Pedregalejo has a whole row of chiringuitos.',
+        },
+      ],
+    },
+    {
+      id: 'fri10',
+      date: 'Fri · Jul 10',
+      title: 'Fly home',
+      subtitle: 'Early transfer to the airport and the United flight to Newark.',
+      stops: [
+        {
+          time: '7:00 AM',
+          name: 'Check out & transfer to AGP',
+          from: 'Palacio Solecio Málaga',
+          query: 'Málaga Airport AGP',
+          mode: 'driving',
+          notes: 'Hotel checkout is by 12:00 PM, but with a 9:35 AM flight you’ll leave early. Aim to be at Málaga Airport ~2 hours before — around 7:30 AM.',
+        },
+        {
+          time: '9:35 AM',
+          name: 'Flight · Málaga → Newark (UA 351)',
+          query: 'Málaga Airport AGP',
+          notes: 'United UA 351, Málaga (AGP) 9:35 AM → Newark (EWR) 6:10 PM. Travelling with Matt. Check bag-drop and boarding times the night before.',
         },
       ],
     },
@@ -712,11 +1145,64 @@
     },
   ];
 
-  const TABS = [
-    ...days.map(d => ({ id: d.id, label: d.date.split(' · ')[0] })),
-    { id: 'essentials', label: 'Essentials' },
-    { id: 'tickets', label: 'Tickets' },
+  const danceVenues = [
+    {
+      heading: 'Pre-Midnight Party Bars',
+      time: '10:00 PM – 1:30 AM',
+      venues: [
+        {
+          name: 'Monkey Piper',
+          summary: 'The ultimate waterfront party bar. A massive outdoor terrace packed with study-abroad students, plus a high-energy indoor space playing Top 40, EDM and radio pop anthems.',
+          nights: 'Open 7 nights a week. Peak student, sing-along energy is Thursday, Friday and Saturday.',
+          address: 'P.º de Cristóbal Colón, 7, Casco Antiguo, 41001 Sevilla',
+          walk: '~25 min walk from the Airbnb',
+        },
+        {
+          name: 'Bestiario',
+          summary: 'Steps from Monkey Piper on the same riverfront strip. A massive social crossroads with an energetic crowd singing along to 2010s pop anthems and global commercial tracks.',
+          nights: 'Open 7 nights a week. Busy early every evening; the wildest pre-game crowds are on weekends.',
+          address: 'P.º de Cristóbal Colón, 10, Casco Antiguo, 41001 Sevilla',
+          walk: '~25 min walk from the Airbnb',
+        },
+        {
+          name: 'Sopa de Ganso',
+          summary: 'A loud, crowded, deeply fun university bar in the student-heavy Alfalfa neighborhood. Famous for cheap drinks, high-volume international music and a wall-to-wall social vibe.',
+          nights: 'Open 7 nights a week. A pure student hub, so it stays busy even on weeknights like Tuesday and Wednesday.',
+          address: 'C. Pérez Galdós, 8, Casco Antiguo, 41004 Sevilla',
+          walk: '~16 min walk from the Airbnb',
+        },
+      ],
+    },
+    {
+      heading: 'After-Midnight Megaclubs',
+      time: '2:00 AM – 6:00 AM',
+      venues: [
+        {
+          name: 'KOKO',
+          summary: 'Under Las Setas, the top pick for international students. DJs spin heavy EDM mashups (The Chainsmokers, Calvin Harris) and global Top 40 hits.',
+          nights: 'Open 7 nights a week. Tuesday is the mandatory night for study-abroad students (huge international/Erasmus parties); Thursday, Friday and Saturday are also big.',
+          address: 'Pl. de la Encarnación, 38, Casco Antiguo, 41003 Sevilla',
+          walk: '~12 min walk from the Airbnb',
+        },
+        {
+          name: 'Uthopía Sevilla',
+          summary: 'A sprawling 3-story megaclub inside an old station complex. Draws a big American student crowd to its Commercial/Pop floor for English radio remixes.',
+          nights: 'Open Wednesday–Sunday (closed Monday and Tuesday). Thursday is the most popular university weeknight; Friday and Saturday draw the biggest crowds.',
+          address: 'Pl. la Legión, s/n, Casco Antiguo, 41001 Sevilla',
+          walk: '~18 min walk from the Airbnb',
+        },
+      ],
+    },
   ];
+
+  const NAV_OTHER = [
+    { id: 'essentials', label: 'Essentials' },
+    { id: 'dance', label: 'Sevilla Dance' },
+  ];
+  const dayLabel = (id) => {
+    const d = days.find(x => x.id === id);
+    return d ? d.date.replace(' · Jul', '') : '';
+  };
 
   const TICKET_KEY = 'seville-tickets-v1';
   function getTickets() {
@@ -725,11 +1211,17 @@
   }
   function setTicket(id, val) {
     const s = getTickets();
-    if (val) s[id] = true; else delete s[id];
+    s[id] = !!val;
     localStorage.setItem(TICKET_KEY, JSON.stringify(s));
   }
+  function ticketChecked(id) {
+    const state = getTickets();
+    if (Object.prototype.hasOwnProperty.call(state, id)) return state[id];
+    const t = tickets.find(x => x.id === id);
+    return t ? !!t.booked : false;
+  }
 
-  const tabsEl = document.getElementById('tabs');
+  const navEl = document.getElementById('nav');
   const contentEl = document.getElementById('content');
 
   function escapeHtml(s) {
@@ -738,8 +1230,17 @@
 
   function renderDay(day) {
     const stopsHtml = day.stops.map(s => {
+      if (s.stepsOnly) {
+        const only = (s.steps || []).map(st => `
+          <details class="steps">
+            <summary><span class="steps-plus"></span>${escapeHtml(st.label)}</summary>
+            <div class="steps-body">${st.html}</div>
+          </details>
+        `).join('');
+        return `<article class="stop stop-steps">${only}</article>`;
+      }
       const ticketId = stopTicket[s.id];
-      const checked = ticketId && getTickets()[ticketId];
+      const checked = ticketId && ticketChecked(ticketId);
       let pill = '';
       if (ticketId) {
         pill = checked
@@ -749,12 +1250,20 @@
 
       let action = '';
       if (!s.isHome && s.query) {
-        const url = directTo(s.query, s.mode || 'walking');
+        const url = s.from
+          ? directBetween(s.from, s.query, s.mode || 'walking')
+          : directTo(s.query, s.mode || 'walking');
         action = `<a class="cta outline" href="${url}" target="_blank" rel="noopener">Directions</a>`;
       }
 
       const homeClass = s.isHome ? ' is-home' : '';
       const img = s.image ? `<img class="stop-image" src="${s.image}" alt="${escapeHtml(s.name)}" loading="lazy" />` : '';
+      const steps = (s.steps || []).map(st => `
+        <details class="steps">
+          <summary><span class="steps-plus"></span>${escapeHtml(st.label)}</summary>
+          <div class="steps-body">${st.html}</div>
+        </details>
+      `).join('');
 
       return `
         <article class="stop${homeClass}">
@@ -766,6 +1275,7 @@
           ${img}
           ${s.notes ? `<p class="stop-notes">${escapeHtml(s.notes)}</p>` : ''}
           ${action ? `<div class="actions">${action}</div>` : ''}
+          ${steps}
         </article>
       `;
     }).join('');
@@ -811,14 +1321,43 @@
     `;
   }
 
+  function renderDance() {
+    const sections = danceVenues.map(sec => `
+      <div class="essentials-section">
+        <h3>${escapeHtml(sec.heading)} · ${escapeHtml(sec.time)}</h3>
+        ${sec.venues.map(v => `
+          <div class="venue">
+            <div class="venue-name">${escapeHtml(v.name)}</div>
+            <p class="venue-summary">${escapeHtml(v.summary)}</p>
+            <p class="venue-meta"><strong>Nights:</strong> ${escapeHtml(v.nights)}</p>
+            <p class="venue-meta"><strong>Getting there:</strong> ${escapeHtml(v.walk)}</p>
+            <a class="venue-addr" href="${directTo(v.address, 'walking')}" target="_blank" rel="noopener">${escapeHtml(v.address)} →</a>
+          </div>
+        `).join('')}
+      </div>
+    `).join('');
+
+    contentEl.innerHTML = `
+      <div class="day-header">
+        <div class="eyebrow">Nightlife</div>
+        <h2>Sevilla Dance</h2>
+        <p>Where the night actually goes — pre-midnight party bars, then the after-midnight megaclubs. Tap any address to open walking directions in Google Maps.</p>
+      </div>
+      ${sections}
+      <div class="map-wrap">
+        <iframe class="map-frame" src="https://www.google.com/maps?q=${encodeURIComponent(AIRBNB)}&z=14&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Seville nightlife map"></iframe>
+        <p class="map-cap">Centred on the Airbnb (C/ de Sta. Clara, 4). Every venue is inside the Casco Antiguo — tap an address above to navigate.</p>
+      </div>
+    `;
+  }
+
   function renderTickets() {
-    const state = getTickets();
-    const done = tickets.filter(t => state[t.id]).length;
+    const done = tickets.filter(t => ticketChecked(t.id)).length;
     const total = tickets.length;
     const pct = total ? (done / total) * 100 : 0;
 
     const items = tickets.map(t => {
-      const isChecked = !!state[t.id];
+      const isChecked = ticketChecked(t.id);
       return `
         <div class="ticket ${isChecked ? 'checked' : ''}">
           <button class="checkbox ${isChecked ? 'checked' : ''}" aria-label="Toggle booked" data-toggle="${t.id}"></button>
@@ -834,9 +1373,9 @@
 
     contentEl.innerHTML = `
       <div class="day-header">
-        <div class="eyebrow">Book in advance</div>
-        <h2>Tickets to buy</h2>
-        <p>Tap the box once you’ve booked. The agenda flips to “Booked”.</p>
+        <div class="eyebrow">Before you go</div>
+        <h2>To-do</h2>
+        <p>Everything still to book. Tap the box once it’s done — it flips to “Booked”.</p>
       </div>
       <div class="progress">
         <div class="progress-text"><strong>${done}</strong> of ${total} booked</div>
@@ -848,44 +1387,90 @@
     contentEl.querySelectorAll('[data-toggle]').forEach(btn => {
       btn.addEventListener('click', () => {
         const id = btn.dataset.toggle;
-        setTicket(id, !getTickets()[id]);
+        setTicket(id, !ticketChecked(id));
         renderTickets();
       });
     });
   }
 
-  function render(activeId) {
-    tabsEl.innerHTML = TABS.map(t => `
-      <button class="tab" role="tab" aria-selected="${t.id === activeId}" data-id="${t.id}">${t.label}</button>
-    `).join('');
-    tabsEl.querySelectorAll('.tab').forEach(t => {
-      t.addEventListener('click', () => {
-        const id = t.dataset.id;
-        sessionStorage.setItem('seville-active', id);
-        render(id);
-        window.scrollTo({ top: 0 });
+  function go(id) {
+    sessionStorage.setItem('seville-active', id);
+    render(id);
+    window.scrollTo({ top: 0 });
+  }
+
+  function buildNav(activeId) {
+    const isDay = days.some(d => d.id === activeId);
+    const otherActive = NAV_OTHER.find(o => o.id === activeId);
+    const dateBtnLabel = isDay ? ('Date · ' + dayLabel(activeId)) : 'Date';
+    const otherBtnLabel = otherActive ? ('Other · ' + otherActive.label) : 'Other';
+
+    const dayItems = days.map(d =>
+      `<button class="menu-item ${d.id === activeId ? 'active' : ''}" data-id="${d.id}">${escapeHtml(d.date)}</button>`
+    ).join('');
+    const otherItems = NAV_OTHER.map(o =>
+      `<button class="menu-item ${o.id === activeId ? 'active' : ''}" data-id="${o.id}">${escapeHtml(o.label)}</button>`
+    ).join('');
+
+    navEl.innerHTML = `
+      <button class="nav-btn ${activeId === 'today' ? 'active' : ''}" data-id="today">Today</button>
+      <button class="nav-btn ${activeId === 'tickets' ? 'active' : ''}" data-id="tickets">To-do</button>
+      <div class="menu" data-menu="date">
+        <button class="nav-btn ${isDay ? 'active' : ''}" data-menu-toggle="date">${escapeHtml(dateBtnLabel)} <span class="chev">▾</span></button>
+        <div class="menu-panel">${dayItems}</div>
+      </div>
+      <div class="menu" data-menu="other">
+        <button class="nav-btn ${otherActive ? 'active' : ''}" data-menu-toggle="other">${escapeHtml(otherBtnLabel)} <span class="chev">▾</span></button>
+        <div class="menu-panel">${otherItems}</div>
+      </div>
+    `;
+
+    navEl.querySelectorAll('[data-menu-toggle]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const menu = btn.closest('.menu');
+        const isOpen = menu.classList.contains('open');
+        navEl.querySelectorAll('.menu').forEach(m => m.classList.remove('open'));
+        if (!isOpen) menu.classList.add('open');
       });
     });
+    navEl.querySelectorAll('[data-id]').forEach(el => {
+      el.addEventListener('click', (e) => {
+        e.stopPropagation();
+        go(el.dataset.id);
+      });
+    });
+  }
 
-    if (activeId === 'tickets') renderTickets();
+  function todayDayId() {
+    const now = new Date();
+    if (now.getFullYear() === 2026 && now.getMonth() === 6) {
+      const map = { 1:'wed', 2:'thu', 3:'fri', 4:'sat', 5:'sun', 6:'mon', 7:'tue', 8:'wed8', 9:'thu9', 10:'fri10' };
+      if (map[now.getDate()]) return map[now.getDate()];
+    }
+    return null;
+  }
+
+  function render(activeId) {
+    buildNav(activeId);
+    if (activeId === 'today') {
+      const id = todayDayId() || days[0].id;
+      renderDay(days.find(d => d.id === id) || days[0]);
+    }
+    else if (activeId === 'tickets') renderTickets();
     else if (activeId === 'essentials') renderEssentials();
+    else if (activeId === 'dance') renderDance();
     else {
       const day = days.find(d => d.id === activeId) || days[0];
       renderDay(day);
     }
   }
 
-  function initialId() {
-    const session = sessionStorage.getItem('seville-active');
-    if (session) return session;
-    const now = new Date();
-    if (now.getFullYear() === 2026 && now.getMonth() === 6) {
-      const map = { 1:'wed', 2:'thu', 3:'fri', 4:'sat', 5:'sun' };
-      if (map[now.getDate()]) return map[now.getDate()];
-    }
-    return 'wed';
-  }
-  render(initialId());
+  document.addEventListener('click', () => {
+    navEl.querySelectorAll('.menu').forEach(m => m.classList.remove('open'));
+  });
+
+  render('today');
 </script>
 </body>
 </html>
